@@ -1,0 +1,148 @@
+{
+    "$defs": {
+        "TerminalBaseReqData": {
+            "type": "object",
+            "properties": {
+                "tranDate": {
+                    "type": "string",
+                    "$comment": "Datum transakcie ",
+                    "maxLength": 10,
+                    "minLength": 10,
+                    "readOnly": true,
+                    "format": "YYMMDDHHNNSS"
+                },
+                "retailerId": {
+                    "type": "string",
+                    "$comment": "Identifikator obchodnika v NUCLEUSe",
+                    "minLength": 1,
+                    "maxLength": 19
+                },
+                "tranType": {
+                    "type": "string",
+                    "enum": [
+                        "\"0210\"",
+                        "\"0430\""
+                    ],
+                    "$comment": "Typ transakcie (0210/0430)",
+                    "maxLength": 4,
+                    "minLength": 4
+                },
+                "tranTransubtype": {
+                    "type": "string",
+                    "maxLength": 1,
+                    "minLength": 1
+                },
+                "tranTrancode": {
+                    "type": "string",
+                    "maxLength": 8,
+                    "minLength": 2,
+                    "$comment": "Transakcny kod transakcie /z PSTM spravy"
+                },
+                "approvalCode": {
+                    "type": "string",
+                    "minLength": 6,
+                    "maxLength": 8,
+                    "$comment": "Autorizacny kod transakcie"
+                },
+                "track2": {
+                    "type": "string",
+                    "maxLength": 37,
+                    "$comment": "Cele cislo karty"
+                },
+                "AMOUNT": {
+                    "type": "integer",
+                    "$comment": "Ciastka transakcie v centoch"
+                },
+                "currencyCode": {
+                    "type": "string",
+                    "$comment": "Kod meny v ktorej bola transakcia realizovana",
+                    "const": "978"
+                },
+                "terminalId": {
+                    "type": "string",
+                    "$comment": "Textovy identifikator terminalu transakcie",
+                    "minLength": 1,
+                    "maxLength": 16
+                },
+                "REV_REASON": {
+                    "type": "integer",
+                    "$comment": "Dovod reverzalu u  revers trnx",
+                    "enum": [
+                        "0",
+                        "3",
+                        "4",
+                        "8"
+                    ]
+                },
+                "tranIdPos": {
+                    "type": "string",
+                    "$comment": "SessionID/TrnxID z pokladne",
+                    "maxLength": 13,
+                    "minLength": 13
+                },
+                "TRAN_SOURCE": {
+                    "type": "integer",
+                    "$comment": "Zdroj transakcie   0 - Online 1 - BackOffice",
+                    "enum": [
+                        "0",
+                        "1"
+                    ]
+                },
+                "originator": {
+                    "type": "string",
+                    "maxLength": 1,
+                    "minLength": 1,
+                    "$comment": "Povodca transakcie - vstup do systemu 1 - _SPDH_ORIGINATOR_   //vstup priamo z spdh C - _DB2AUTH_ORIGINATOR_  //vstup cez claim 2 - _SOAP_ORIGINATOR_    //vstup cez soap'"
+                },
+                "posEntryMode": {
+                    "type": "string",
+                    "$comment": "POS Entry Mode - sposob vykonania trx",
+                    "maxLength": 3,
+                    "minLength": 3
+                },
+                "pin": {
+                    "type": "string",
+                    "$comment": "PIN karty"
+                }
+            },
+            "required": [
+                "tranDate",
+                "retailerId",
+                "tranType",
+                "tranTransubtype",
+                "tranTrancode",
+                "TRAN_SOURCE",
+                "originator",
+                "posEntryMode"
+            ]
+        },
+        "TerminaBaseRespData": {
+            "type": "object",
+            "properties": {
+                "approvalCode": {
+                    "type": "string",
+                    "minLength": 6,
+                    "maxLength": 6,
+                    "$comment": "Autorizacny kod transakcie"
+                },
+                "respCode": {
+                    "type": "string",
+                    "$comment": "Navratovy kod transakcie",
+                    "maxLength": 3,
+                    "minLength": 3
+                },
+                "amount": {
+                    "type": "integer",
+                    "$comment": "Ciastka transakcie v centoch",
+                    "maxLength": 3,
+                    "minLength": 3
+                }
+            },
+            "required": [
+                "approvalCode",
+                "respCode",
+                "amount"
+            ]
+        }
+    }
+}
