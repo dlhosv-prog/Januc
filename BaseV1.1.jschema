@@ -1,7 +1,7 @@
 {
    "$schema": "http://json-schema.org/draft/2020-12/schema",
     "title": "Base JSON types",
-    "description": "Definicia zakladnych ypov",
+    "description": "Definicia zakladnych typov",
      "type": "object",
      "$defs": {
         "TerminalBaseReqData": {
