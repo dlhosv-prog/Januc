@@ -1,2 +1,2 @@
 # Januc
-repository pre migraciu nucleusu do javy
+Privatny repository pre migraciu nucleusu do javy
